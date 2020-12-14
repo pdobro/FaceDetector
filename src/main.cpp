@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
     }
 
     FaceDetector face_detector;
-    BlurDrawer drawer(img, face_detector.detected_face(img));
+    BlurDrawer drawer(img, face_detector.detected_face(img), 1);
     drawer.draw();
 
     auto finish = std::chrono::high_resolution_clock::now();

@@ -15,9 +15,10 @@ class BlurDrawer {
 private:
     cv::Mat image;
     std::vector<cv::Rect> face_list;
+    int mode;//blur mode
 
 public:
-    BlurDrawer(cv::Mat input_image, std::vector<cv::Rect> list);
+    BlurDrawer(cv::Mat input_image, std::vector<cv::Rect> list, int x);
 
     void draw();
 };
