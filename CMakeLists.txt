@@ -10,6 +10,15 @@ target_include_directories(${PROJECT_NAME} PRIVATE include)
 find_package(OpenCV REQUIRED)
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 
+find_package( Boost REQUIRED COMPONENTS program_options regex )
+include_directories( ${Boost_INCLUDE_DIRS} )
+
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+target_link_libraries(${PROJECT_NAME} Threads::Threads)
+
+target_link_libraries(${PROJECT_NAME}  rt)
+
 # Introduce preprocessor variables to keep paths of asset files
 set(FACE_DETECTION_CONFIGURATION
         "${PROJECT_SOURCE_DIR}/assets/deploy.prototxt")

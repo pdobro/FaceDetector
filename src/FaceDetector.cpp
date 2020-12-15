@@ -18,7 +18,7 @@ FaceDetector::FaceDetector() :
 
 }
 
-std::vector<cv::Rect> FaceDetector::detected_face(const cv::Mat &frame) {
+void FaceDetector::detected_face(const cv::Mat &frame) {
     cv::Mat input_blob = cv::dnn::blobFromImage(frame, image_scale, cv::Size(image_width, image_height), mean_val, false, false);
 
     detection_network.setInput(input_blob, "data");
@@ -44,5 +44,11 @@ std::vector<cv::Rect> FaceDetector::detected_face(const cv::Mat &frame) {
 
     }
 
-    return faces;
+    boost::interprocess::shared_memory_object::remove("face_list");
+
+    boost::interprocess::managed_shared_memory sch(boost::interprocess::open_or_create, "face_list", 1024);
+    std::vector<cv::Rect> *instance = sch.construct<std::vector<cv::Rect>> ("list") (faces);
+
+
+
 }

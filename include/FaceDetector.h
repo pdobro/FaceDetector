@@ -10,6 +10,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <boost/interprocess/managed_shared_memory.hpp>
 
 
 class FaceDetector {
@@ -32,7 +33,7 @@ public:
     explicit FaceDetector();
 
     //return list of detected faces
-    std::vector<cv::Rect> detected_face(const cv::Mat &frame);
+    void detected_face(const cv::Mat &frame);
 };
 
 

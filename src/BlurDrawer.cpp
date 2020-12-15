@@ -25,9 +25,13 @@ void BlurDrawer::draw() {
          }
      }
 
+    cv::imshow("wideło", image);
 
-    cv::imwrite("result.jpg", image);
-
+    int k = cv::waitKey(0);
+    if(k == 's')
+    {
+        cv::imwrite("result.jpg", image);
+    }
 }
 
 

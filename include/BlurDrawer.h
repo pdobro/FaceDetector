@@ -10,6 +10,8 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 #include <utility>
+#include <boost/interprocess/shared_memory_object.hpp>
+
 
 class BlurDrawer {
 private:
